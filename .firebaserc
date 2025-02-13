@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ecommerces-628eb": {
+      "hosting": {
+        "ecommerces": [
+          "ecommerces-628eb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ecommerces-628eb"
+  }
+}
