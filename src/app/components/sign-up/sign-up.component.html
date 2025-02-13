@@ -1,12 +1,33 @@
-<div>
-    <div>
-        <input [(ngModel)] = 'email' />
+
+<div class="container">
+    <div class="logo_image">
+        <img src="../../../assets/easyMarket_without_bg.png" alt="Logo de easy marcket" class="easyMarket_img"/>
     </div>
-    <div>
-        <input [(ngModel)] = 'password' />
-    </div>
-    <div>
-        <button (click)="signUp()">signUp</button>
+
+    <div class="form_container">
+        <div class="welcome_container">
+            <h2>Bonjour</h2>
+            <p>Créer un compte ou
+                <a href="login">Se connecter</a>
+            </p>
+        </div>
+        <form>
+            <div>
+                <label for="email" class="label_text">Email : </label>
+                <input type="email" [(ngModel)] = 'email' class="input" name="Email"/>
+            </div>
+            
+            <div>
+                <label for="password" class="label_text">Mot de passe : </label>
+                <input type="password" [(ngModel)] = 'password'  class="input password_input" name="Email"/>
+            </div>
+        </form>
+        <div class="button_container">
+            <button (click)="signUp()" class="button">S'inscrire'</button>
+        </div>
+        <a href="login">J'ai déjà un compte</a>
+    
+    
     </div>
 </div>
 

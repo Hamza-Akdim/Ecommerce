@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    width: 80%;
+}
+
+.logo_image{
+    width: 45%;
+}
+.easyMarket_img{
+    width: 100%;
+}
+.form_container{
+    width: 40%;
+    padding: 20px 10px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+.input{
+    width: 80%;
+    height: 25px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #54545E;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+
+    /*margin-bottom: 30px;*/
+}
+
+.label_text{
+    color: #333333;
+}
+
+.button{
+    background-color: #570E6C;
+    color: #FFFFFF;
+    width: 85%;
+    height: 40px;
+    border: 1px solid #54545E;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
