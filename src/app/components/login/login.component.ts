@@ -32,7 +32,7 @@ export class LoginComponent {
     this.authService.logIn(rawForm.email!,rawForm.password!)
     .subscribe({
       next:()=>{
-        //this.router.navigateByUrl('');
+        this.router.navigateByUrl('/');
       },
       error: (err)=>{
         this.errorMessage = err.code;

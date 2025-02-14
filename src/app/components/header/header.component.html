@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
         <!-- 🟢 Logo -->
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" routerLink="/">
             <img src="../../../assets/logo.svg" alt="Logo Easy Market" class="logo" style="height: 60px;">
         </a>
 
         <!-- Barre de recherche -->
-        <form class="d-flex search-bar flex-grow-1">
-            <input class="form-control me-2 custom-search" type="search" placeholder="Rechercher un produit..." aria-label="Search">
-            <button class="btn btn-outline-primary search-btn" type="submit" title="Rechercher">
+        <form class="d-flex search-bar flex-grow-1" (ngSubmit)="onSearch()" #searchForm="ngForm">
+            <input class="form-control me-2 custom-search" type="text" id="searchQuery" [(ngModel)]="searchQuery" name="searchQuery" required placeholder="Rechercher un produit..." aria-label="Search" #query="ngModel">
+            <button class="btn btn-outline-primary search-btn" type="submit" title="Rechercher" [disabled]="searchForm.invalid">
                 <i class="bi bi-search"></i>
             </button>
         </form>
@@ -20,7 +20,7 @@
             <a routerLink="/cart" class="btn position-relative me-3">
                 <i class="bi bi-cart3 fs-4"></i>
                 <span class="articcolor position-absolute top-0 start-100 translate-middle badge rounded-pill">
-                    0 <!-- Exemple du nombre d'articles -->
+                    {{tatalItemChoce}} <!-- Exemple du nombre d'articles -->
                 </span>
             </a>
 

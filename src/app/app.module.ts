@@ -44,7 +44,6 @@ const firebaseConfig = {
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    //provideFirebaseApp(() => initializeApp({"projectId":"ecommerces-628eb","appId":"1:533787085282:web:8178c4dbb30b0284ec51bb","storageBucket":"ecommerces-628eb.firebasestorage.app","apiKey":"AIzaSyAqxozzieNOJ3XhWnwQZRZDhB9PY-J_3vE","authDomain":"ecommerces-628eb.firebaseapp.com","messagingSenderId":"533787085282"})),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-39cba","appId":"1:488041240953:web:ee5d7e45c60173b628b7a8","storageBucket":"ecommerce-39cba.firebasestorage.app","apiKey":"AIzaSyABfzpVPXpbViZsZ30kRLFVAz9-WPg27oY","authDomain":"ecommerce-39cba.firebaseapp.com","messagingSenderId":"488041240953"}))

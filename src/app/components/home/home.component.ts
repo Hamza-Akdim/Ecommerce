@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ApiService } from '../../services/api.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,21 +10,6 @@ import { ApiService } from '../../services/api.service';
 })
 export class HomeComponent {
 
-
-  products: Product[] = [];
-  showTable: boolean = false;
-
-  constructor(private api: ApiService) {}
-
-  toggleProducts() {
-    if (!this.showTable) {
-      this.api.getProducts().subscribe(response => {
-        this.products = response;
-        this.showTable = true;
-      });
-    } else {
-      this.showTable = false; 
-    }
-  }
+  products = [1,2,3,4,5,6];
 
 }

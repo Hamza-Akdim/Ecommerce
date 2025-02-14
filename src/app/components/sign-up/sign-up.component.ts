@@ -25,7 +25,6 @@ export class SignUpComponent {
   });
 
 
-
   errorMessage: string | null = null;
 
   OnSubmit(): void {
