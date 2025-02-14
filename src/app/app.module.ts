@@ -14,6 +14,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/header/header.component';
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyABfzpVPXpbViZsZ30kRLFVAz9-WPg27oY",
+  authDomain: "ecommerce-39cba.firebaseapp.com",
+  projectId: "ecommerce-39cba",
+  storageBucket: "ecommerce-39cba.firebasestorage.app",
+  messagingSenderId: "488041240953",
+  appId: "1:488041240953:web:ee5d7e45c60173b628b7a8"
+};
+
 
 @NgModule({
   declarations: [
@@ -21,7 +33,8 @@ import { LoginComponent } from './components/login/login.component';
     SignUpComponent,
     HomeComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +44,10 @@ import { LoginComponent } from './components/login/login.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"ecommerces-628eb","appId":"1:533787085282:web:8178c4dbb30b0284ec51bb","storageBucket":"ecommerces-628eb.firebasestorage.app","apiKey":"AIzaSyAqxozzieNOJ3XhWnwQZRZDhB9PY-J_3vE","authDomain":"ecommerces-628eb.firebaseapp.com","messagingSenderId":"533787085282"})),
+    //provideFirebaseApp(() => initializeApp({"projectId":"ecommerces-628eb","appId":"1:533787085282:web:8178c4dbb30b0284ec51bb","storageBucket":"ecommerces-628eb.firebasestorage.app","apiKey":"AIzaSyAqxozzieNOJ3XhWnwQZRZDhB9PY-J_3vE","authDomain":"ecommerces-628eb.firebaseapp.com","messagingSenderId":"533787085282"})),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-39cba","appId":"1:488041240953:web:ee5d7e45c60173b628b7a8","storageBucket":"ecommerce-39cba.firebasestorage.app","apiKey":"AIzaSyABfzpVPXpbViZsZ30kRLFVAz9-WPg27oY","authDomain":"ecommerce-39cba.firebaseapp.com","messagingSenderId":"488041240953"}))
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())

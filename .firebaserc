@@ -6,9 +6,16 @@
           "ecommerces-628eb"
         ]
       }
+    },
+    "ecommerce-39cba": {
+      "hosting": {
+        "ecommerces": [
+          "ecommerce-39cba"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "ecommerces-628eb"
+    "default": "ecommerce-39cba"
   }
 }

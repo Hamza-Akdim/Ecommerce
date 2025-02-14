@@ -1,5 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,26 +12,32 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  private auth = inject(Auth)
 
-  public email : string ='';
-  public password : string = '';
+  authService = inject(AuthService);
 
+  fb = inject(FormBuilder);
+  http = inject(HttpClient);
+  router = inject(Router);
 
-  public login(){
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
-    .then((userCredential) => {
-      // Signed up 
-      const user = userCredential.user;
-      console.log('This is a user', user.email);
-      // ...
+  errorMessage: string|null = null;
+
+  form = this.fb.group({
+    email: ['', [Validators.required,Validators.email]],
+    password: ['',Validators.required],
+  });
+
+  OnSubmit(): void {
+
+    const rawForm = this.form.getRawValue()
+    this.authService.logIn(rawForm.email!,rawForm.password!)
+    .subscribe({
+      next:()=>{
+        //this.router.navigateByUrl('');
+      },
+      error: (err)=>{
+        this.errorMessage = err.code;
+      }
     })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-    });
-
-
   }
+  
 }

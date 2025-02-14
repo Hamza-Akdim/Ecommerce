@@ -1,31 +1,43 @@
-<div class="container">
-    <div class="logo_image">
-        <img src="../../../assets/logo2.svg" alt="Logo de easy marcket" class="easyMarket_img" />
-    </div>
-
-    <div class="form_container">
-        <div class="welcome_container">
-            <h2>Bonjour</h2>
-            <p>Ouvrir une session ou
-                <a href="signUp">Créer un compte</a>
-            </p>
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="row w-75  p-5 rounded bg-white">
+        <!--shadow-sm 🟢 LOGO SECTION -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img src="../../../assets/logo2.svg" alt="Logo de Easy Market" class="img-fluid">
         </div>
-        <form>
-            <div>
-                <label for="email" class="label_text">Email : </label>
-                <input type="email" [(ngModel)]='email' class="input" name="Email" />
+
+        <!-- 🟢 FORMULAIRE -->
+        <div class="col-md-6">
+            <div class="text-center mb-4">
+                <h2>Bonjour</h2>
+                <p>Ouvrir une session ou
+                    <a routerLink="/signUp" class="text-decoration-none text-muted">Créer un compte</a></p>
             </div>
 
-            <div>
-                <label for="password" class="label_text">Mot de passe : </label>
-                <input type="password" [(ngModel)]='password' class="input password_input" name="Email" />
+            <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email :</label>
+                    <input type="email" id="email" class="form-control" formControlName="email" [class.is-invalid]="form.controls.email.invalid && form.controls.email.touched">
+                    <div *ngIf="form.controls.email.invalid && form.controls.email.touched" class="invalid-feedback">
+                        Email invalide
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe :</label>
+                    <input type="password" id="password" class="form-control" formControlName="password" [class.is-invalid]="form.controls.password.invalid && form.controls.password.touched">
+                    <div *ngIf="form.controls.password.invalid && form.controls.password.touched" class="invalid-feedback">
+                        Mot de passe requis
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Se connecter</button>
+                </div>
+            </form>
+
+            <div class="text-center mt-3">
+                <a href="#" class="text-decoration-none text-muted">Mot de passe oublié ?</a>
             </div>
-        </form>
-        <div class="button_container">
-            <button (click)="login()" class="button">Se connecter</button>
         </div>
-        <a href="#">Mot de passe oublié</a>
-
-
     </div>
 </div>

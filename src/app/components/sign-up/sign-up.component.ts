@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,22 +12,37 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 })
 export class SignUpComponent {
 
-  private auth = inject(Auth)
+  fb = inject(FormBuilder);
+  http = inject(HttpClient);
+  router = inject(Router);
+  authService = inject(AuthService);
 
-    public email : string ='';
-    public password : string = '';
+  //formulaire et validations
+  form = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
-    public signUp(){
-        createUserWithEmailAndPassword(this.auth, this.email, this.password)
-        .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-        });
+
+
+  errorMessage: string | null = null;
+
+  OnSubmit(): void {
+
+
+    const rawForm = this.form.getRawValue()
+    this.authService.singIn(rawForm.email!,rawForm.username!,rawForm.password!)
+    .subscribe({
+      next:()=>{
+      this.router.navigateByUrl('/');
+    },
+    error: (err)=>{
+      this.errorMessage = err.code;
     }
+  })
+
+}
+
+
 }

@@ -1,50 +1,32 @@
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 5%;
-    width: 80%;
+:host {
+    --primary-color: #570E6C;
+    --secondary-color: #6d0f87;
 }
 
-.logo_image{
-    width: 45%;
-}
-.easyMarket_img{
-    width: 100%;
-}
-.form_container{
-    width: 40%;
-    padding: 20px 10px;
-    display: block;
-    align-items: center;
-    justify-content: center;
-}
-.input{
-    width: 80%;
-    height: 25px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #54545E;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-
-    /*margin-bottom: 30px;*/
+.container {
+    max-width: 900px;
 }
 
-.label_text{
-    color: #333333;
+.img-fluid {
+    max-width: 80%;
 }
 
-.button{
-    background-color: #570E6C;
-    color: #FFFFFF;
-    width: 85%;
-    height: 40px;
-    border: 1px solid #54545E;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
+.form-control {
+    border-radius: 0px;
+    height: 45px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 0px;
+    height: 45px;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.invalid-feedback {
+    font-size: 0.9rem;
 }

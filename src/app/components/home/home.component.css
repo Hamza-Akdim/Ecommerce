@@ -1,9 +1,9 @@
 .container {
     text-align: center;
-    margin-top: 20px;
-  }
-  
-  button {
+    margin-top: 90px;
+}
+
+button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -12,29 +12,30 @@
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 20px;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #0056b3;
-  }
-  
-  table {
+}
+
+table {
     width: 80%;
     margin: 0 auto;
     border-collapse: collapse;
-  }
-  
-  th, td {
+}
+
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
-  }
-  
-  th {
+}
+
+th {
     background-color: #007bff;
     color: white;
-  }
-  
-  img {
+}
+
+img {
     border-radius: 5px;
-  }
+}
