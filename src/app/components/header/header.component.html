@@ -24,10 +24,33 @@
                 </span>
             </a>
 
-            <!-- Connexion/Déconnexion -->
-            <a class="auth-link" (click)="toggleAuth()">
-                <i class="bi bi-person"></i> {{ isLoggedIn() ? 'Déconnexion' : 'Connexion' }}
-            </a>
+
+
+            <div class="dropdown" *ngIf="isLoggedIn(); else loginButton">
+                <a class="auth-link dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                    <i class="bi bi-person"></i> Bienvenue {{ (authService.user$ | async)?.displayName}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <a class="dropdown-item" (click)="toggleAuth()">Déconnexion</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Profil</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Panier</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bouton de connexion (affiché si l'utilisateur n'est pas connecté) -->
+            <ng-template #loginButton>
+                <a class="auth-link" (click)="toggleAuth()">
+                    <i class="bi bi-person"></i> Connexion
+                </a>
+            </ng-template>
+
+
         </div>
     </div>
 </nav>

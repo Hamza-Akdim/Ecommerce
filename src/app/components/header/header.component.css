@@ -63,3 +63,21 @@ nav {
 .logo {
     height: 60px;
 }
+
+
+/* Ajustement du dropdown utilisateur */
+
+.dropdown-menu {
+    min-width: 150px;
+    border-radius: 5px;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: var(--orange-color);
+    color: white;
+}

@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
+import { RechercheComponent } from './components/recherche/recherche.component';
 
 
 const firebaseConfig = {
@@ -33,7 +34,8 @@ const firebaseConfig = {
     HomeComponent,
     NotFoundComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    RechercheComponent
   ],
   imports: [
     BrowserModule,
