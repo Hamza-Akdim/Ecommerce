@@ -3,28 +3,21 @@
 
 <!--colince pour que le header ne cache pas la page modifier padingtop css-->
 <div class="container">
-    <h1>Resultats de la recherche</h1>
+    <h1>Résultats de la recherche</h1>
 
     <div class="container mt-4">
         <div class="row">
-            <div *ngFor="let product of products" class="col-md-4">
-                <div class="card shadow-sm mb-4">
-                    <img src="assets/logo2.svg" class="card-img-top" alt="Cover Image">
+            <div *ngFor="let product of products" class="col-md-4 mb-4">
+                <div class="card custom-card">
+                    <img [src]="product.image" class="card-img-top" alt="product.title">
                     <div class="card-body">
-                        <h5 class="card-title">Logo du groupe</h5>
-                        <p class="card-text">nous somme en cours pour le moment</p>
-
-
-                        <a [routerLink]="" class="text-primary text-decoration-none">Payer</a>
-
-
+                        <h5 class="card-title">{{product.title}} </h5>
+                        <p class="card-text"> {{product.description}}</p>
+                        <p class="card-price"> ${{product.price}} </p>
+                        <a [routerLink]="" class="btn btn-artistic">Voir plus</a>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </div>

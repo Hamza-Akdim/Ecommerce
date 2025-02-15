@@ -1,41 +1,143 @@
+:host {
+    --primary-color: #570E6C;
+    --secondary-color: #6d0f87;
+    --orange-color: #ff5733;
+}
+
 .container {
     text-align: center;
     margin-top: 90px;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
+.custom-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
 }
 
-button:hover {
+
+/* Effet au survol */
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style de l'image */
+
+.custom-card .card-img-top {
+    border-bottom: 2px solid #e0e0e0;
+    height: 300px;
+    object-fit: cover;
+}
+
+
+/* Style du titre */
+
+.custom-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+
+/* Style du texte */
+
+.custom-card .card-text {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 1rem;
+}
+
+
+/* Style du prix */
+
+.custom-card .card-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+
+/* Style de base du bouton */
+
+.custom-card .btn-artistic {
+    background: linear-gradient(45deg, #fafafa, var(--orange-color));
+    border: 1px solid #d8d7d7;
+    border-radius: 0;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Effet de surbrillance au survol */
+
+.custom-card .btn-artistic::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    border-radius: 50%;
+}
+
+
+/* Animation au survol */
+
+.custom-card .btn-artistic:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Effet de surbrillance au survol */
+
+.custom-card .btn-artistic:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* Animation au clic */
+
+.custom-card .btn-artistic:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style du bouton simple ont peu l'utiliser si on veux
+
+.custom-card .btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+/* Effet au survol du bouton 
+
+.custom-card .btn-primary:hover {
+    transform: translateY(-5px);
     background-color: #0056b3;
 }
 
-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background-color: #007bff;
-    color: white;
-}
-
-img {
-    border-radius: 5px;
-}
+*/

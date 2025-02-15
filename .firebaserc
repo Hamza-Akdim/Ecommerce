@@ -1,21 +1,14 @@
 {
-  "targets": {
-    "ecommerces-628eb": {
-      "hosting": {
-        "ecommerces": [
-          "ecommerces-628eb"
-        ]
-      }
+    "targets": {
+        "ecommerce-39cba": {
+            "hosting": {
+                "ecommerce": [
+                    "ecommerce-39cba"
+                ]
+            }
+        }
     },
-    "ecommerce-39cba": {
-      "hosting": {
-        "ecommerces": [
-          "ecommerce-39cba"
-        ]
-      }
+    "projects": {
+        "default": "ecommerce-39cba"
     }
-  },
-  "projects": {
-    "default": "ecommerce-39cba"
-  }
 }

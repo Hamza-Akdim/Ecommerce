@@ -26,7 +26,6 @@ const firebaseConfig = {
   appId: "1:488041240953:web:ee5d7e45c60173b628b7a8"
 };
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +45,8 @@ const firebaseConfig = {
     FormsModule,
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-39cba","appId":"1:488041240953:web:ee5d7e45c60173b628b7a8","storageBucket":"ecommerce-39cba.firebasestorage.app","apiKey":"AIzaSyABfzpVPXpbViZsZ30kRLFVAz9-WPg27oY","authDomain":"ecommerce-39cba.firebaseapp.com","messagingSenderId":"488041240953"}))
+    provideFirebaseApp(() => initializeApp(firebaseConfig))
+    //provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-39cba","appId":"1:488041240953:web:ee5d7e45c60173b628b7a8","storageBucket":"ecommerce-39cba.firebasestorage.app","apiKey":"AIzaSyABfzpVPXpbViZsZ30kRLFVAz9-WPg27oY","authDomain":"ecommerce-39cba.firebaseapp.com","messagingSenderId":"488041240953"}))
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
