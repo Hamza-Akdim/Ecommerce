@@ -1,0 +1,52 @@
+<div class="cart-container">
+
+    <div class="header-panier">
+        <button (click)="retour()" *ngIf="itemDropedTable.length > 0" class="retour-btn">⏪ Retour</button>
+        <h2 class="cart-title">🛒 Mon Panier</h2>
+    </div>
+
+    <!-- Si le panier est vide -->
+    <p *ngIf="productsPanier.length === 0" class="empty-cart">
+        Votre panier est vide.
+    </p>
+
+    <!-- Affichage des produits dans le panier -->
+    <div *ngIf="productsPanier.length > 0">
+        <ul class="cart-list">
+            <li *ngFor="let item of productsPanier" class="cart-item">
+                <img [src]="item.image" alt="{{ item.title }}" class="product-image">
+                <div class="product-details">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                    <span class="rating">Rating: {{ item.rating.rate }} / 5</span>
+                    <p class="prixstyle">${{ item.price }}</p>
+
+                </div>
+                <button (click)="suprimerProduct(item.id)" class="delete-btn"><i class="bi bi-trash"></i>Delete</button>
+            </li>
+        </ul>
+
+        <!-- Total du panier -->
+        <h3 class="cart-total">Total : ${{ discount() }}</h3>
+
+        <!-- Boutons pour vider le panier ou commander -->
+        <div class="cart-actions">
+            <button (click)="viderPanier()" class="clear-cart-btn">
+                Vider le panier
+            </button>
+            <button (click)="commander()" class="buy-cart-btn">
+                Commander
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Historique des achats -->
+    <h2 class="history-title">📜 Historique des Achats</h2>
+    <ul class="history-list">
+        <li *ngFor="let historyItem of purchaseHistory" class="history-item">
+            <p>{{ historyItem.date }} - {{ historyItem.products.length }} articles - NumCommande : {{ historyItem.id }}</p>
+        </li>
+    </ul>
+
+</div>

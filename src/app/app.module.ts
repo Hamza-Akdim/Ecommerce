@@ -16,6 +16,13 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RechercheComponent } from './components/recherche/recherche.component';
+import { ProductDetailsModalComponent } from './components/product-details-modal/product-details-modal.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FooterComponent } from './components/footer/footer.component';
+import { PanierComponent } from './components/panier/panier.component';
+import { UserProfilComponent } from './components/user-profil/user-profil.component';
+import { DialogConfirmDropComponent } from './components/dialog-confirm-drop/dialog-confirm-drop.component';
 
 
 const firebaseConfig = {
@@ -35,7 +42,12 @@ const firebaseConfig = {
     NotFoundComponent,
     LoginComponent,
     HeaderComponent,
-    RechercheComponent
+    RechercheComponent,
+    ProductDetailsModalComponent,
+    FooterComponent,
+    PanierComponent,
+    UserProfilComponent,
+    DialogConfirmDropComponent
   ],
   imports: [
     BrowserModule,
@@ -45,13 +57,15 @@ const firebaseConfig = {
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDialogModule,
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideFirebaseApp(() => initializeApp(firebaseConfig))
     //provideFirebaseApp(() => initializeApp({"projectId":"ecommerce-39cba","appId":"1:488041240953:web:ee5d7e45c60173b628b7a8","storageBucket":"ecommerce-39cba.firebasestorage.app","apiKey":"AIzaSyABfzpVPXpbViZsZ30kRLFVAz9-WPg27oY","authDomain":"ecommerce-39cba.firebaseapp.com","messagingSenderId":"488041240953"}))
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

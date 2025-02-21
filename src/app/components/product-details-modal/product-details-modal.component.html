@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ data.product.title }}</h2>
+<mat-dialog-content>
+    <img [src]="data.product.image" alt="{{ data.product.title }}" class="product-image">
+    <p>{{ data.product.description }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="price-container">
+        <p class="price">Prix : {{ data.product.price | currency }}</p>
+    </div>
+
+    <!--colince tu a mis le css en locale car le globale ne fonctionne pas-->
+    <div class="custom-card actions-container">
+        <button mat-dialog-close class="btn-artistic">Fermer</button>
+        <button mat-button (click)="addToCart(data.product)" class="btn-artistic">Ajouter au panier</button>
+    </div>
+</mat-dialog-actions>

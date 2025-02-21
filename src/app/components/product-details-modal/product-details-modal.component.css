@@ -1,31 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-
 :host {
     --primary-color: #570E6C;
     --secondary-color: #6d0f87;
     --orange-color: #ff5733;
 }
 
-.custom-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #ffffff;
-}
-
-
-/* Effet au survol */
-
-.custom-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-}
-
-
-/* Style de l'image */
-
-.custom-card .card-img-top {
+.product-image {
     border-bottom: 2px solid #e0e0e0;
     height: 300px;
     width: 100%;
@@ -34,31 +13,39 @@
 }
 
 
-/* Style du titre */
+/* Conteneur principal des actions */
 
-.custom-card .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 0.75rem;
+mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-top: 1px solid #b9b9b9;
 }
 
 
-/* Style du texte */
+/* Conteneur du prix */
 
-.custom-card .card-text {
-    font-size: 0.9rem;
-    color: #666666;
-    margin-bottom: 1rem;
+.price-container {
+    flex: 1;
 }
 
 
 /* Style du prix */
 
-.custom-card .card-price {
-    font-size: 1.1rem;
+.price {
+    font-size: 1.2rem;
     font-weight: bold;
     color: var(--secondary-color);
-    margin-bottom: 1rem;
+    margin: 0;
+}
+
+
+/* Conteneur des boutons */
+
+.actions-container {
+    display: flex;
+    gap: 8px;
 }
 
 
@@ -66,7 +53,6 @@
 
 .custom-card .btn-artistic {
     background: linear-gradient(45deg, #fafafa, var(--orange-color));
-    border: 1px solid #d8d7d7;
     border-radius: 0;
     padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
@@ -74,7 +60,7 @@
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -101,7 +87,7 @@
 
 .custom-card .btn-artistic:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -117,14 +103,4 @@
 .custom-card .btn-artistic:active {
     transform: translateY(0);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

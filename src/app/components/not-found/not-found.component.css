@@ -1,0 +1,16 @@
+.container {
+    margin-top: 80px;
+}
+
+.not-found-image {
+    width: 60%;
+    /* Ajuste la largeur selon le besoin */
+    max-width: 400px;
+    /* Définir une largeur maximale pour éviter que l'image devienne trop grande */
+    height: auto;
+    /* Conserver les proportions de l'image */
+}
+
+.container.text-center {
+    padding: 20px;
+}

@@ -17,10 +17,20 @@ nav {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.home-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    margin: 10px;
+}
+
 .custom-search {
     border: 1px solid black;
-    padding: 10px;
-    width: 100%;
+    padding: 5px;
+    width: 90%;
     border-radius: 0;
 }
 
@@ -50,7 +60,11 @@ nav {
 }
 
 .auth-link:hover {
-    color: var(--secondary-color)
+    color: var(--secondary-color);
+}
+
+.home-link:hover {
+    color: var(--secondary-color);
 }
 
 .articcolor {

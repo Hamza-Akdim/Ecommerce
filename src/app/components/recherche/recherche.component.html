@@ -1,21 +1,33 @@
-<div *ngIf="searchResults.length >0">
-
-    <h2>Résultats de la recherche</h2>
+<div *ngIf="searchResults.length >0; else noResults">
 
     <div class="container mt-4">
         <div class="row">
             <div *ngFor="let product of searchResults" class="col-md-4 mb-4">
                 <div class="card custom-card">
-                    <img [src]="product.image" class="card-img-top" alt="product.title">
+                    <img [src]="product.image" class="card-img-top" alt="{{ product.title }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{product.title}} </h5>
-                        <p class="card-text"> {{product.description}}</p>
-                        <p class="card-price"> ${{product.price}} </p>
-                        <a [routerLink]="" class="btn btn-artistic">Voir plus</a>
+                        <h5 class="card-title">{{ product.title | slice:0:25 }}{{ product.title.length > 25 ? '...' : '' }}</h5>
+                        <p class="card-text">{{ product.description | slice:0:50 }}{{ product.description.length > 50 ? '...' : '' }}</p>
+                        <p class="card-price">${{ product.price }}</p>
+
+                        <!-- Affichage de la note -->
+                        <div class="product-rating">
+                            <span>Rating: {{ product.rating.rate }} / 5</span>
+                            <span>{{ product.rating.count }} reviews</span>
+                        </div>
+
+                        <button (click)="openProductDetails(product)" class="btn btn-artistic">Voir plus</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+
+
+<!--si aucun produit n'est disponible-->
+<ng-template #noResults>
+    <div class="container">
+        <img src="assets/vitrine.svg" alt="Page Not Found" class="img-fluid not-found-image" style="width: 70%; max-width: 400px; height: auto;">
+    </div>
+</ng-template>

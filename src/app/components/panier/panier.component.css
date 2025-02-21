@@ -1,0 +1,209 @@
+:host {
+    --primary-color: #570E6C;
+    --secondary-color: #6d0f87;
+    --orange-color: #ff5733;
+}
+
+
+/* Conteneur principal */
+
+.cart-container {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #fff;
+    /*box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);*/
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+/* Titre */
+
+.cart-title,
+.history-title {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+
+/* Message panier vide */
+
+.empty-cart {
+    font-size: 18px;
+    color: #777;
+}
+
+
+/* entet bouton retour  et votre panier*/
+
+.header-panier {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.retour-btn {
+    background-color: var(--orange-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.retour-btn:hover {
+    background-color: white;
+}
+
+
+/* Liste des produits */
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+
+/* Image du produit */
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+
+/* Détails du produit */
+
+.product-details {
+    flex: 1;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.product-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #444;
+}
+
+.product-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.product-details span {
+    color: #e49311;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: normal;
+}
+
+.product-details span :first-child {
+    font-weight: bold;
+}
+
+
+/* Prix */
+
+.prixstyle {
+    font-weight: bold;
+    color: var(--primary-color) !important;
+}
+
+
+/* Bouton supprimer */
+
+.delete-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+
+/* Total du panier */
+
+.cart-total {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+
+/* Bouton Vider le panier */
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.clear-cart-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.clear-cart-btn:hover {
+    background: #c0392b;
+}
+
+
+/*btn passer une commnde*/
+
+.buy-cart-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buy-cart-btn:hover {
+    background: #218c53;
+}
+
+
+/* Historique */
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.history-item {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}

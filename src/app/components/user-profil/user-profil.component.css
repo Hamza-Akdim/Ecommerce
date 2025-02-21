@@ -1,0 +1,70 @@
+:host {
+    --primary-color: #570E6C;
+    --secondary-color: #6d0f87;
+    --danger-color: #dc3545;
+    --orange-color: #ff5733;
+}
+
+.container {
+    margin-top: 120px;
+    max-width: 1200px;
+}
+
+.profile-header h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.profile-header h4 {
+    color: #6c757d;
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 0px;
+    height: 45px;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 0px;
+    height: 45px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: var(--orange-color);
+    border-color: var(--orange-color);
+    border-radius: 0px;
+    height: 45px;
+}
+
+.btn-danger:hover {
+    background-color: #f5a678;
+}
+
+.edit-profile-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.form-control {
+    border-radius: 0px;
+    height: 45px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: var(--primary-color);
+}

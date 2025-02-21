@@ -1,8 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
         <!-- 🟢 Logo -->
-        <a class="navbar-brand" routerLink="/">
-            <img src="../../../assets/easyMarket_without_bg.png" alt="Logo Easy Market" class="logo">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="../../../assets/logoMK.svg" alt="Logo Easy Market" class="logo">
+        </a>
+
+        <a class="home-link" [routerLink]="['/']">
+            Home
         </a>
 
         <!-- Barre de recherche -->
@@ -13,19 +17,48 @@
             </button>
         </form>
 
+        <!-- Bouton des catégories -->
+        <div class="dropdown">
+            <a class="auth-link dropdown-toggle" id="dropdownCategoriesButton" data-bs-toggle="dropdown">
+                Catégories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownCategoriesButton">
+                <li *ngFor="let categorie of allCategorie">
+                    <a class="dropdown-item" (click)="onCategorySelect(categorie)">
+                        {{ categorie }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bouton de trie -->
+        <!--div class="dropdown">
+            <a class="auth-link dropdown-toggle" id="dropdownCategoriesButton" data-bs-toggle="dropdown">
+                Sorted
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownCategoriesButton">
+                <li *ngFor="let value of sotedValues">
+                    <a class="dropdown-item" (click)="onSortedSelect(value)">
+                        {{ value }}
+                    </a>
+                </li>
+            </ul>
+        </div-->
+
 
         <!-- Icônes panier & Connexion/Déconnexion -->
         <div class="d-flex align-items-center">
+
             <!-- Panier -->
-            <a routerLink="/cart" class="btn position-relative me-3">
+            <!--rediriger le user si il n'est pas connecté-->
+            <a class="dropdown-item" [routerLink]="isLoggedIn() ? '/panier' : '/login'" class="btn position-relative me-3">
                 <i class="bi bi-cart3 fs-4"></i>
                 <span class="articcolor position-absolute top-0 start-100 translate-middle badge rounded-pill">
                     {{tatalItemChoce}} <!-- Exemple du nombre d'articles -->
                 </span>
             </a>
 
-
-
+            <!-- Bouton de connexion (affiché si l'utilisateur n'est pas connecté) -->
             <div class="dropdown" *ngIf="isLoggedIn(); else loginButton">
                 <a class="auth-link dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown">
                     <i class="bi bi-person"></i> Bienvenue {{ (authService.user$ | async)?.displayName}}
@@ -35,15 +68,15 @@
                         <a class="dropdown-item" (click)="toggleAuth()">Déconnexion</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Profil</a>
+                        <a class="dropdown-item" [routerLink]="['/user-profil']">Profil</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Panier</a>
+                        <!--rediriger le user si il n'est pas connecté-->
+                        <a class="dropdown-item" [routerLink]="isLoggedIn() ? '/panier' : '/login'">Panier</a>
                     </li>
+
                 </ul>
             </div>
-
-            <!-- Bouton de connexion (affiché si l'utilisateur n'est pas connecté) -->
             <ng-template #loginButton>
                 <a class="auth-link" (click)="toggleAuth()">
                     <i class="bi bi-person"></i> Connexion

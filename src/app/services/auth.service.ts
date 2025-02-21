@@ -7,6 +7,7 @@ import { from, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  
 
   firebaseAuth = inject(Auth)
   user$ = user(this.firebaseAuth); //utilisateur
@@ -45,6 +46,22 @@ export class AuthService {
   logOut(): Observable<void>{
     const promise = signOut(this.firebaseAuth);
     return from(promise);
+  }
+
+
+  // Mise à jour du profil utilisateur
+  updateUserProfile(user: UserInterface): Observable<void> {
+    if (this.firebaseAuth.currentUser) {
+      const promise = updateProfile(this.firebaseAuth.currentUser, {
+        displayName: user.username,
+      }).catch((error) => {
+        throw error; 
+      });
+
+      return from(promise);
+    } else {
+      throw new Error('Utilisateur non connecté');
+    }
   }
 
   
