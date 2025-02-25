@@ -78,9 +78,19 @@
                 </ul>
             </div>
             <ng-template #loginButton>
-                <a class="auth-link" (click)="toggleAuth()">
-                    <i class="bi bi-person"></i> Connexion
-                </a>
+                <div class="dropdown">
+                    <a class="auth-link dropdown-toggle" id="dropdownAcountButton" data-bs-toggle="dropdown">
+                        <i class="bi bi-person"></i> Compte
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownAcountButton">
+                        <li>
+                            <a class="dropdown-item" (click)="toggleAuth()">Connexion</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" [routerLink]="['/signUp']">Register</a>
+                        </li>
+                    </ul>
+                </div>
             </ng-template>
 
 

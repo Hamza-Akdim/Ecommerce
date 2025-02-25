@@ -1,7 +1,9 @@
 <div class="cart-container">
-
+    <!-- En-tête du panier -->
     <div class="header-panier">
-        <button (click)="retour()" *ngIf="itemDropedTable.length > 0" class="retour-btn">⏪ Retour</button>
+        <button (click)="retour()" *ngIf="itemDropedTable.length > 0" class="retour-btn">
+            ⏪ Retour
+        </button>
         <h2 class="cart-title">🛒 Mon Panier</h2>
     </div>
 
@@ -18,11 +20,9 @@
                 <div class="product-details">
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.description }}</p>
-                    <span class="rating">Rating: {{ item.rating.rate }} / 5</span>
                     <p class="prixstyle">${{ item.price }}</p>
-
                 </div>
-                <button (click)="suprimerProduct(item.id)" class="delete-btn"><i class="bi bi-trash"></i>Delete</button>
+                <button (click)="suprimerProduct(item.id)" class="delete-btn"><i class="bi bi-trash"></i></button>
             </li>
         </ul>
 
@@ -32,13 +32,12 @@
         <!-- Boutons pour vider le panier ou commander -->
         <div class="cart-actions">
             <button (click)="viderPanier()" class="clear-cart-btn">
-                Vider le panier
+                Vider
             </button>
             <button (click)="commander()" class="buy-cart-btn">
                 Commander
             </button>
         </div>
-
     </div>
 
     <!-- Historique des achats -->
@@ -48,5 +47,4 @@
             <p>{{ historyItem.date }} - {{ historyItem.products.length }} articles - NumCommande : {{ historyItem.id }}</p>
         </li>
     </ul>
-
 </div>

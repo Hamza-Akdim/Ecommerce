@@ -60,8 +60,18 @@ export class PanierComponent implements OnInit {
     this.itemDropedTable.push(itemDroped)
   }
 
-  commander() {
-    throw new Error('tu na pas encore fait commander');
+  commander(): void {
+      this.cartService.commander(this.productsPanier,1).subscribe({
+        next: (response)=>{
+          console.log("commande passe avec succes:",response);
+          alert("commande passe avec succes !");
+
+        },
+        error: (error)=>{
+          console.error('Erreur lors de la commande:', error);
+          alert('Une erreur est survenue lors de la commande.');
+        }
+      })
   }
 
   retour() {
