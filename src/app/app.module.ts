@@ -23,6 +23,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PanierComponent } from './components/panier/panier.component';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { DialogConfirmDropComponent } from './components/dialog-confirm-drop/dialog-confirm-drop.component';
+import { AppConfigModule } from './app.config.ecom/app.config.modules';
 
 
 const firebaseConfig = {
@@ -53,6 +54,7 @@ const firebaseConfig = {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AppConfigModule,
     CommonModule,
     RouterModule,
     ReactiveFormsModule,

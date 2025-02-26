@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HistoryInterface } from '../models/HistoryInterface';
+import { APP_CONFIG, AppConfig } from '../app.config.ecom/app.config.modules';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,21 @@ export class ApiService {
 
   searchProducts = new BehaviorSubject<Product[]>([]);// Subject pour émettre les résultats de recherche
 
-  private apiUrl = 'https://fakestoreapi.com';
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(APP_CONFIG) private config: AppConfig
+  ) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`);
+    return this.http.get<Product[]>(`${this.config.endpoints.products}`);
   } 
 
   getAllCategories():Observable<string[]>{
-    return this.http.get<string[]>(`${this.apiUrl}/products/categories`);
+    return this.http.get<string[]>(`${this.config.endpoints.categories}`);
   }
 
   getProductsByCategory(category: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products/category/${category}`);
+    return this.http.get<Product[]>(`${this.config.endpoints.category}/${category}`);
   }
 
   // Rechercher des produits
@@ -60,7 +62,7 @@ export class ApiService {
 
   //gestion des commandes
   getCommandeByUserId(userId: number): Observable<HistoryInterface[]>{
-    return this.http.get<HistoryInterface[]>(`${this.apiUrl}/carts/user/${userId}`);
+    return this.http.get<HistoryInterface[]>(`${this.config.endpoints.user}/${userId}`);
   }
 
   

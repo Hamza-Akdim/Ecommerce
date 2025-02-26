@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { APP_CONFIG, AppConfig } from '../app.config.ecom/app.config.modules';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-
-  private apiUrl = 'https://fakestoreapi.com';
-  
-
   private cartItems = new BehaviorSubject<Product[]>([]);
   cartItems$ = this.cartItems.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(APP_CONFIG) private config: AppConfig
+  ) {}
 
   // Ajouter un produit au panier
   addToCart(product: Product) {
@@ -58,7 +58,7 @@ export class CartService {
       };
       
       this.cartItems.next([]);
-      return this.http.post(`${this.apiUrl}/carts`,commande);
+      return this.http.post(`${this.config.endpoints.carts}`,commande);
     }else {
       throw new Error('Le panier est vide.');
     }
