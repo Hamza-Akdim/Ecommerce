@@ -1,0 +1,23 @@
+<!-- Bouton flottant pour ouvrir/fermer le chatbot -->
+<div class="chatbot-container" [class.open]="isOpen">
+    <div class="chat-header" (click)="toggleChat()">
+        <span>💬 E-Market</span>
+        <button class="close-btn">&times;</button>
+    </div>
+
+    <div class="chat-body">
+        <div class="messages">
+            <div *ngFor="let msg of messages" [class.user]="msg.user" [class.bot]="!msg.user">
+                {{ msg.text }}
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-footer">
+        <input [(ngModel)]="userMessage" (keyup.enter)="sendMessage()" placeholder="Écris ton message..." />
+        <button (click)="sendMessage()">➤</button>
+    </div>
+</div>
+
+<!-- Bouton flottant -->
+<button class="chatbot-btn" (click)="toggleChat()">💬</button>

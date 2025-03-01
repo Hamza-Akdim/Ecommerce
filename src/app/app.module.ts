@@ -24,6 +24,8 @@ import { PanierComponent } from './components/panier/panier.component';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { DialogConfirmDropComponent } from './components/dialog-confirm-drop/dialog-confirm-drop.component';
 import { AppConfigModule } from './app.config.ecom/app.config.modules';
+import { CategoriesComponentComponent } from './components/categories-component/categories-component.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 
 const firebaseConfig = {
@@ -48,7 +50,9 @@ const firebaseConfig = {
     FooterComponent,
     PanierComponent,
     UserProfilComponent,
-    DialogConfirmDropComponent
+    DialogConfirmDropComponent,
+    CategoriesComponentComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

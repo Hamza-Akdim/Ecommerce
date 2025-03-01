@@ -4,6 +4,9 @@
         <div class="row">
             <div *ngFor="let product of searchResults" class="col-md-4 mb-4">
                 <div class="card custom-card">
+                    <div class="star-overlay">
+                        <span class="star">{{ generateStars(product.rating.rate) }}</span>
+                    </div>
                     <img [src]="product.image" class="card-img-top" alt="{{ product.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.title | slice:0:25 }}{{ product.title.length > 25 ? '...' : '' }}</h5>
@@ -12,7 +15,8 @@
 
                         <!-- Affichage de la note -->
                         <div class="product-rating">
-                            <span>Rating: {{ product.rating.rate }} / 5</span>
+                            <!--span>{{ generateStars(product.rating.rate) }}</span-->
+                            <!--span>Rating: {{ product.rating.rate }} / 5</span-->
                             <span>{{ product.rating.count }} reviews</span>
                         </div>
 
@@ -27,7 +31,8 @@
 
 <!--si aucun produit n'est disponible-->
 <ng-template #noResults>
-    <div class="container">
-        <img src="assets/vitrine.svg" alt="Page Not Found" class="img-fluid not-found-image" style="width: 70%; max-width: 400px; height: auto;">
+    <div class="container text-center">
+        <p class="mt-3">Aucun produit trouvé. Essayez une autre recherche.</p>
+        <img src="assets/vitrine.svg" alt="Aucun résultat" class="img-fluid not-found-image" style="width: 70%; max-width: 400px; height: auto;">
     </div>
 </ng-template>
