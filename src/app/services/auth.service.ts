@@ -1,5 +1,5 @@
 import { effect, inject, Inject, Injectable, signal } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, EmailAuthProvider, reauthenticateWithCredential, signInWithEmailAndPassword, signOut, updatePassword, updateProfile, user } from '@angular/fire/auth';
 import { UserInterface } from '../models/UserInterface';
 import { from, Observable } from 'rxjs';
 
@@ -7,14 +7,14 @@ import { from, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  
+
 
   firebaseAuth = inject(Auth)
   user$ = user(this.firebaseAuth); //utilisateur
   currentUserSignal = signal<UserInterface | null| undefined>(undefined);
 
 
-  constructor() { 
+  constructor() {
     //mettre ajour currenusersignal
     effect(()=>{
       this.user$.subscribe(currentUser =>{
@@ -22,7 +22,7 @@ export class AuthService {
       });
     });
   }
-
+  
   singIn(email: string, username: string,password:string):Observable<void>{
     const promise = createUserWithEmailAndPassword(
       this.firebaseAuth,
@@ -55,7 +55,7 @@ export class AuthService {
       const promise = updateProfile(this.firebaseAuth.currentUser, {
         displayName: user.username,
       }).catch((error) => {
-        throw error; 
+        throw error;
       });
 
       return from(promise);
@@ -64,5 +64,23 @@ export class AuthService {
     }
   }
 
-  
+  updatePassword(currentPassword: string, newPassword: string): Observable<void> {
+    const currentUser = this.firebaseAuth.currentUser;
+    if (!currentUser || !currentUser.email) {
+      throw new Error('Utilisateur non connecté');
+    }
+
+    const credential = EmailAuthProvider.credential(currentUser.email, currentPassword);
+
+    const promise = reauthenticateWithCredential(currentUser, credential)
+      .then(() => updatePassword(currentUser, newPassword))
+      .catch((error) => {
+        throw error;
+      });
+
+    return from(promise);
+  }
 }
+
+
+
