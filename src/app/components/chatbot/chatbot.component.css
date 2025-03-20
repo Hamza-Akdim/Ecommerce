@@ -89,14 +89,16 @@
 .chat-footer input {
     flex: 1;
     padding: 5px;
+    border-radius: 5px;
 }
 
 .chat-footer button {
     background: var(--secondary-color);
     color: white;
-    border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
 }
 
 
@@ -106,8 +108,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--secondary-color);
-    color: white;
+    background: none;
     border: none;
     padding: 10px;
     border-radius: 50%;

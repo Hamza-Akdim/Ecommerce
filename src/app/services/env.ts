@@ -1,0 +1,1 @@
+export const key = "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";

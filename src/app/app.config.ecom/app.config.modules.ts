@@ -14,7 +14,8 @@ export class AppConfig{
         category: string;
         carts: string;
         user: string;
-      } = { products: '', categories: '', category: '' ,carts:'', user:''};
+        bot: string;
+      } = { products: '', categories: '', category: '' ,carts:'', user:'',bot:''};
 }
 
 export const APP_DI_CONFIG: AppConfig = {
@@ -24,7 +25,8 @@ export const APP_DI_CONFIG: AppConfig = {
         categories: `${environment.apiBaseUrl}/products/categories`,
         category: `${environment.apiBaseUrl}/products/category`,
         carts: `${environment.apiBaseUrl}/carts`,
-        user: `${environment.apiBaseUrl}/carts/user`
+        user: `${environment.apiBaseUrl}/carts/user`,
+        bot: `${environment.boturl}`
       }
 };
 

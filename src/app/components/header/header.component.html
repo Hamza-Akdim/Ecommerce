@@ -61,7 +61,7 @@
             <!-- Bouton de connexion (affiché si l'utilisateur n'est pas connecté) -->
             <div class="dropdown" *ngIf="isLoggedIn(); else loginButton">
                 <a class="auth-link dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                    <i class="bi bi-person"></i> Bienvenue {{ (authService.user$ | async)?.displayName}}
+                    <i class="bi bi-person"></i>{{ (authService.user$ | async)?.displayName}}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li>

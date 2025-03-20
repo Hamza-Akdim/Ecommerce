@@ -2,7 +2,7 @@
     <button class="nav-button prev" (click)="scrollLeft()">&#10094;</button>
     <div class="categories-container" #categoriesContainer>
 
-        <div class="category-card" *ngFor="let category of duplicatedCategories">
+        <div class="category-card" *ngFor="let category of categories">
             <a (click)="onCategorySelect(category.name)">
                 <img [src]="category.image" [alt]="category.name" class="category-image" title="img">
                 <div class="category-overlay">

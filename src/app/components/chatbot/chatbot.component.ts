@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-chatbot',
@@ -10,16 +11,9 @@ export class ChatbotComponent {
   messages: { text: string; user: boolean }[] = [];
   userMessage: string = '';
 
-  // Liste de réponses aléatoires pour informer et encourager le user
-  botResponses: string[] = [
-    "Merci de votre visite ! Explorez nos collections exclusives sur notre site. 😊",
-    "Notre équipe est à votre service ! Vous pouvez nous laisser un email à contact@calais-em.com 📩",
-    "Vous cherchez quelque chose de précis ? Consultez notre catalogue en ligne ! 🛍️",
-    "Nous offrons des réductions spéciales cette semaine ! Ne ratez pas nos offres. 🔥",
-    "Votre satisfaction est notre priorité ! N'hésitez pas à nous contacter pour plus d'infos. 📞",
-    "Pour toute question, écrivez-nous à contact@esymaarket.com. On vous répond rapidement ! 💌",
-    "Envie d'un produit unique ? Découvrez nos nouveautés en avant-première sur notre site ! 🌟"
-  ];
+  constructor(
+      public apiService: ApiService,
+    ) {};
 
   toggleChat() {
     this.isOpen = !this.isOpen;
@@ -29,19 +23,33 @@ export class ChatbotComponent {
     }
   }
 
+  formatApiResponse(response: string): string {
+    let cleanedText = response.replace(/^\\boxed{(.*)}$/, '$1').trim();
+    cleanedText = cleanedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    cleanedText = cleanedText.replace(/- (.*?)(\n|$)/g, '<li>$1</li>');
+    cleanedText = cleanedText.replace(/(<li>.*?<\/li>)/gs, '<ul>$1</ul>');
+    return cleanedText;
+  }
+
   sendMessage() {
     if (this.userMessage.trim() === '') return;
-
-    // Ajouter le message de l'utilisateur
     this.messages.push({ text: this.userMessage, user: true });
-
-    // Simuler une réponse aléatoire du bot après 1s
-    setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * this.botResponses.length);
-      const botReply = this.botResponses[randomIndex];
-      this.messages.push({ text: botReply, user: false });
-    }, 1000);
-
+  
+    this.apiService.chat(this.userMessage).subscribe(
+      response => {
+        console.log(response);
+  
+        const rawText = response.choices[0].message.content;
+        const formattedText = this.formatApiResponse(rawText);
+  
+        this.messages.push({ text: formattedText, user: false });
+      },
+      error => {
+        console.error("Erreur lors de la réponse du chatbot", error);
+        this.messages.push({ text: "Désolé, le service de chat est actuellement indisponible.", user: false });
+      }
+    );
+  
     this.userMessage = '';
   }
 }

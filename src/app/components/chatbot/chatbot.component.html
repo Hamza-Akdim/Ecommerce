@@ -8,7 +8,7 @@
     <div class="chat-body">
         <div class="messages">
             <div *ngFor="let msg of messages" [class.user]="msg.user" [class.bot]="!msg.user">
-                {{ msg.text }}
+                <span [innerHTML]="msg.text"></span>
             </div>
         </div>
     </div>
@@ -20,4 +20,6 @@
 </div>
 
 <!-- Bouton flottant -->
-<button class="chatbot-btn" (click)="toggleChat()">💬</button>
+<button class="chatbot-btn" (click)="toggleChat()">
+    <img src="assets/chatbot.svg" alt="">
+</button>
