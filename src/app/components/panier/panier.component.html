@@ -1,50 +1,60 @@
-<div class="cart-container">
-    <!-- En-tête du panier -->
-    <div class="header-panier">
-        <button (click)="retour()" *ngIf="itemDropedTable.length > 0" class="retour-btn">
-            ⏪ Retour
-        </button>
-        <h2 class="cart-title">🛒 Mon Panier</h2>
-    </div>
+<div class="dashboard-container">
+    <!-- Zone de gauche : Historique des commandes -->
+    <div class="history-section">
+        <h2>Historique des Commandes</h2>
+        <div class="history-list">
+            <div *ngFor="let history of purchaseHistory" class="history-item">
+                <p><strong>Date:</strong> {{ history.date }}</p>
+                <p><strong>Produits:</strong></p>
+                <ul>
+                    <li *ngFor="let product of history.products">
+                        {{ product.productId }} (Quantité: {{ product.quantity }})
+                    </li>
 
-    <!-- Si le panier est vide -->
-    <p *ngIf="productsPanier.length === 0" class="empty-cart">
-        Votre panier est vide.
-    </p>
-
-    <!-- Affichage des produits dans le panier -->
-    <div *ngIf="productsPanier.length > 0">
-        <ul class="cart-list">
-            <li *ngFor="let item of productsPanier" class="cart-item">
-                <img [src]="item.image" alt="{{ item.title }}" class="product-image">
-                <div class="product-details">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
-                    <p class="prixstyle">${{ item.price }}</p>
-                </div>
-                <button (click)="suprimerProduct(item.id)" class="delete-btn"><i class="bi bi-trash"></i></button>
-            </li>
-        </ul>
-
-        <!-- Total du panier -->
-        <h3 class="cart-total">Total : ${{ discount() }}</h3>
-
-        <!-- Boutons pour vider le panier ou commander -->
-        <div class="cart-actions">
-            <button (click)="viderPanier()" class="clear-cart-btn">
-                Vider
-            </button>
-            <button (click)="commander()" class="buy-cart-btn">
-                Commander
-            </button>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <!-- Historique des achats -->
-    <h2 class="history-title">📜 Historique des Achats</h2>
-    <ul class="history-list">
-        <li *ngFor="let historyItem of purchaseHistory" class="history-item">
-            <p>{{ historyItem.date }} - {{ historyItem.products.length }} articles - NumCommande : {{ historyItem.id }}</p>
-        </li>
-    </ul>
+    <!-- Zone de droite : Panier actuel -->
+    <div class="cart-section">
+
+
+        <h2>Panier Actuel</h2>
+        <div *ngIf="productsPanier.length > 0; else emptyCart" class="cart-items">
+
+            <div *ngFor="let product of productsPanier" class="cart-item">
+                <img [src]="product.image" alt="{{ product.title }}" class="product-image" />
+                <div class="product-details">
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p><strong>Prix:</strong> {{ product.price }} €</p>
+                    <button (click)="suprimerProduct(product.id)" class="delete-btn"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message si le panier est vide -->
+        <ng-template #emptyCart>
+            <div class="empty-cart-message">
+                <p>Votre panier est vide.</p>
+            </div>
+        </ng-template>
+
+        <!-- Total et actions -->
+        <div class="actions-container">
+            <p><strong>Total:</strong> {{ discount() }} €</p>
+
+        </div>
+        <div class="actions-container">
+            <button *ngIf="productsPanier.length > 0" (click)="commander()" class="btn-artistic">Commander</button>
+            <button *ngIf="productsPanier.length > 0" (click)="viderPanier()" class="btn-artistic">Vider</button>
+            <button *ngIf="itemDropedTable.length > 0" (click)="retour()" class="btn-artistic">Retour</button>
+        </div>
+
+    </div>
+
+
+    <!-- Intégrer le composant Payement -->
+    <app-payement #payementComponent></app-payement>
 </div>

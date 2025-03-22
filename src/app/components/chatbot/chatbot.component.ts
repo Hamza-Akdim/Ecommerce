@@ -41,7 +41,7 @@ export class ChatbotComponent {
   
         const rawText = response.choices[0].message.content;
         const formattedText = this.formatApiResponse(rawText);
-  
+
         this.messages.push({ text: formattedText, user: false });
       },
       error => {

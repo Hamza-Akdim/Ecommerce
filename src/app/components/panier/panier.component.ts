@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmDropComponent } from '../dialog-confirm-drop/dialog-confirm-drop.component';
 import { ApiService } from '../../services/api.service';
 import { HistoryInterface } from '../../models/HistoryInterface';
+import { PayementComponent } from '../payement/payement.component';
 
 @Component({
   selector: 'app-panier',
@@ -13,6 +14,7 @@ import { HistoryInterface } from '../../models/HistoryInterface';
 })
 export class PanierComponent implements OnInit {
 
+  @ViewChild('payementComponent') payementComponent!: PayementComponent;
 
   productsPanier: Product[] = [];
   purchaseHistory : HistoryInterface[] = [];
@@ -46,10 +48,11 @@ export class PanierComponent implements OnInit {
   //suprimer tout les produit si oui
   viderPanier() {
     //recupere les data
-    this.itemDropedTable = this.cartService.getPanier()
+    
     const dialogRef = this.dialog.open(DialogConfirmDropComponent);
     dialogRef.afterClosed().subscribe((result)=>{
       if(result){
+        this.itemDropedTable = this.cartService.getPanier()
         this.cartService.viderPanier()
       }
     })
@@ -61,17 +64,7 @@ export class PanierComponent implements OnInit {
   }
 
   commander(): void {
-      this.cartService.commander(this.productsPanier,1).subscribe({
-        next: (response)=>{
-          console.log("commande passe avec succes:",response);
-          alert("commande passe avec succes !");
-
-        },
-        error: (error)=>{
-          console.error('Erreur lors de la commande:', error);
-          alert('Une erreur est survenue lors de la commande.');
-        }
-      })
+      this.payementComponent.openModal(this.productsPanier);
   }
 
   retour() {
@@ -85,7 +78,8 @@ export class PanierComponent implements OnInit {
       console.log("Aucun produit à retourner.");
     }
   }
-  
+
+
   
 
 }

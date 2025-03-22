@@ -85,7 +85,7 @@ export class ApiService {
           Tu assistes les utilisateurs en français et les aides à créer un compte, passer des commandes, gérer leur historique d'achats et rechercher des produits en filtrant par catégorie. 
           Fournis des réponses claires et précises basées sur leurs besoins. 
           Si un utilisateur a besoin d'une assistance plus approfondie, oriente-le vers notre support : contact@easymarket.com ou au +33 1 23 45 67 89. 
-          Réponds toujours de manière professionnelle et engageante.`
+          Réponds toujours de manière professionnelle et engageante et en bref (un nombre limite de mots ) et le format de ta reponse doit toujour etre un string.`
         },
         { role: "user", content: userMessage }
       ]

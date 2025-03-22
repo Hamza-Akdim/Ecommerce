@@ -26,6 +26,7 @@ import { DialogConfirmDropComponent } from './components/dialog-confirm-drop/dia
 import { AppConfigModule } from './app.config.ecom/app.config.modules';
 import { CategoriesComponentComponent } from './components/categories-component/categories-component.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { PayementComponent } from './components/payement/payement.component';
 
 
 const firebaseConfig = {
@@ -52,7 +53,8 @@ const firebaseConfig = {
     UserProfilComponent,
     DialogConfirmDropComponent,
     CategoriesComponentComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    PayementComponent
   ],
   imports: [
     BrowserModule,

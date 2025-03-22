@@ -8,7 +8,7 @@
     <div class="chat-body">
         <div class="messages">
             <div *ngFor="let msg of messages" [class.user]="msg.user" [class.bot]="!msg.user">
-                <span [innerHTML]="msg.text"></span>
+                {{ msg.text }}
             </div>
         </div>
     </div>
@@ -19,7 +19,10 @@
     </div>
 </div>
 
+<!-- Message au-dessus du bouton -->
+<div class="chatbot-message" *ngIf="!isOpen">Assistant </div>
+
+
+
 <!-- Bouton flottant -->
-<button class="chatbot-btn" (click)="toggleChat()">
-    <img src="assets/chatbot.svg" alt="">
-</button>
+<button class="chatbot-btn" (click)="toggleChat()">💬</button>

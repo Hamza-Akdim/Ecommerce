@@ -2,7 +2,6 @@
     --primary-color: #570E6C;
     --secondary-color: #6d0f87;
     --orange-color: #ff5733;
-    --orange-color-dark: #be4226;
 }
 
 
@@ -14,7 +13,7 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: #EEEEEE !important;
+    background-color: #ffffff !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,8 +21,9 @@ nav {
 /* Styles pour le lien "Accueil" */
 
 .home-link {
-    font-size: 20px;
-    color: rgb(22, 22, 22);
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
     text-decoration: none;
     cursor: pointer;
     transition: color 0.3s;
@@ -41,7 +41,7 @@ nav {
     border: 1px solid black;
     padding: 5px;
     width: 90%;
-    border-radius: 10px;
+    border-radius: 0;
 }
 
 .custom-search:focus {
@@ -55,14 +55,12 @@ nav {
 .search-btn {
     border: 1px solid black;
     color: black;
-    padding: 10px 15px 10px;
+    padding: 10px 15px;
     border-radius: 0;
-    border-radius: 5px;
-    background-color: var(--orange-color);
 }
 
 .search-btn:hover {
-    background-color: var(--orange-color-dark);
+    background-color: var(--orange-color);
 }
 
 
@@ -78,12 +76,6 @@ nav {
 
 .auth-link:hover {
     color: var(--secondary-color);
-}
-
-.dropdown-toggle {
-    color: var(--orange-color);
-    font: bold;
-    font-size: 20px;
 }
 
 
