@@ -30,3 +30,8 @@
 .invalid-feedback {
     font-size: 0.9rem;
 }
+
+.google-button{
+   /* background-color: blue;*/
+    margin-top: 20px;
+}

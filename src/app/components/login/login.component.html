@@ -1,3 +1,4 @@
+
 <div class="container d-flex align-items-center justify-content-center vh-100">
     <div class="row w-100  p-5 rounded bg-white">
         <!--shadow-sm 🟢 LOGO SECTION -->
@@ -8,9 +9,10 @@
         <!-- 🟢 FORMULAIRE -->
         <div class="col-md-6">
             <div class="text-center mb-4">
-                <h2>Bonjour</h2>
-                <p>Ouvrir une session ou
-                    <a routerLink="/signUp" class="text-decoration-none text-muted">Créer un compte</a></p>
+                <h2 class="fw-bold text-uppercase">Bienvenue</h2>
+                <p class="text-muted">Connectez-vous ou  
+                    <a routerLink="/signUp" class="text-decoration-none fw-semibold text-primary">créez un compte</a>
+                </p>
             </div>
 
             <form [formGroup]="form" (ngSubmit)="OnSubmit()">
@@ -35,6 +37,16 @@
                 </div>
             </form>
 
+<br>
+            <div class="d-grid">
+                <button (click)="loginGoogle()" class="btn btn-outline-primary">
+                  <i class="fab fa-google me-2"></i>
+                  Se connecter avec Google
+                </button>
+              </div>
+              
+          
+        
             <div class="text-center mt-3">
                 <a href="#" class="text-decoration-none text-muted">Mot de passe oublié ?</a>
             </div>

@@ -15,6 +15,7 @@ export class SignUpComponent {
   http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
+  message = '';
 
   showPassword = false;
   showConfirmPassword = false;
@@ -43,7 +44,9 @@ export class SignUpComponent {
       .singUp(rawForm.email!, rawForm.username!, rawForm.password!)
       .subscribe({
         next: () => {
-          this.router.navigateByUrl('/');
+          this.message = "Un e-mail de vérification vous a été envoyé. Veuillez vérifier votre boîte mail.";
+          setTimeout(() => { this.message = ''; }, 5000); // 5 secondes },
+         
         },
         error: (err) => {
           this.errorMessage = err.code;
