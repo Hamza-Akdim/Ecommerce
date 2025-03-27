@@ -1,4 +1,5 @@
-import { Component, Inject, inject } from '@angular/core';
+declare let google: any;
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -11,7 +12,26 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+
+
+  ngOnInit(): void {
+    google.accounts.id.initialize({
+      client_id :'',
+      callback:(resp : any)=>{
+
+      }
+    });
+
+    google.accounts.id.renderButton(document.getElementById("google-btn"),{
+      theme:'filed_blue',
+      size:'large',
+      shape:'rectangle',
+      width:350  
+    })
+
+  }
 
   authService = inject(AuthService);
 
@@ -39,5 +59,16 @@ export class LoginComponent {
       }
     })
   }
+
+  loginGoogle() {
+    this.authService.loginWithGoogle().subscribe({
+      next:()=>{
+        this.router.navigateByUrl('/');
+      },
+      error: (err)=>{
+        this.errorMessage = err.code;
+      }
+    })
+    }
   
 }
