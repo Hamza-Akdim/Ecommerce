@@ -44,7 +44,7 @@ export class AuthService {
     return from(promise);
   }
 
-  logOut(): Observable<void>{
+  logOut(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
     return from(promise);
   }
@@ -81,6 +81,9 @@ export class AuthService {
 
     return from(promise);
   }
+
+
+  
 }
 
 

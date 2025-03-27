@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, collectionData, Firestore } from '@angular/fire/firestore';
-import { Category } from '../models/product.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class FirestoreService {
 
   constructor(private firestore: Firestore) { }
@@ -15,8 +16,6 @@ export class FirestoreService {
     console.log(collectionData(categoriesRef, { idField: 'id' }));
     return collectionData(categoriesRef, { idField: 'id' });
   }
-
-
 
   async addCategories() {
     const categories: { name: string; image: string }[] = [
@@ -38,5 +37,4 @@ export class FirestoreService {
         .catch(error => console.error(`Erreur d'ajout :`, error));
     }
   }
-
 }

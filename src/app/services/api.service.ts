@@ -81,20 +81,13 @@ export class ApiService {
       messages: [
         { 
           role: "system", 
-          content: `Tu es l'assistant virtuel d'EasyMarket, une plateforme e-commerce où les utilisateurs peuvent acheter des vêtements, des appareils électroniques et des chaussures pour hommes et femmes. 
-          Tu assistes les utilisateurs en français et les aides à créer un compte, passer des commandes, gérer leur historique d'achats et rechercher des produits en filtrant par catégorie. 
-          Fournis des réponses claires et précises basées sur leurs besoins. 
-          Si un utilisateur a besoin d'une assistance plus approfondie, oriente-le vers notre support : contact@easymarket.com ou au +33 1 23 45 67 89. 
-          Réponds toujours de manière professionnelle et engageante et en bref (un nombre limite de mots ) et le format de ta reponse doit toujour etre un string.`
+          content: `Tu es l'assistant virtuel d'EasyMarket, une plateforme e-commerce 
+          où les utilisateurs peuvent acheter des vêtements, des appareils électroniques 
+          et des chaussures pour hommes et femmes.`
         },
         { role: "user", content: userMessage }
       ]
     };
-
     return this.http.post(this.config.endpoints.bot, body, { headers });
-}
-
-
-  
-  
+  }
 }
