@@ -38,9 +38,10 @@ export class SignUpComponent {
       return;
     }
 
+    const id = 1;
     const rawForm = this.form.getRawValue();
     this.authService
-      .singIn(rawForm.email!, rawForm.username!, rawForm.password!)
+      .singIn(id, rawForm.email!, rawForm.username!, rawForm.password!)
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/');

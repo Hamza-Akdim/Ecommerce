@@ -1,4 +1,6 @@
 export interface UserInterface {
-    email: string,
-    username: string
+  // uid: string; //This is added by Hamza
+  id?: number;
+  email: string;
+  username: string;
 }
