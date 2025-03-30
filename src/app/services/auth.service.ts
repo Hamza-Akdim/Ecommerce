@@ -1,15 +1,5 @@
 import { effect, inject, Inject, Injectable, signal } from '@angular/core';
-import {
-  Auth,
-  createUserWithEmailAndPassword,
-  EmailAuthProvider,
-  reauthenticateWithCredential,
-  signInWithEmailAndPassword,
-  signOut,
-  updatePassword,
-  updateProfile,
-  user,
-} from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, EmailAuthProvider, GoogleAuthProvider, reauthenticateWithCredential, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updatePassword, updateProfile, user } from '@angular/fire/auth';
 import { UserInterface } from '../models/UserInterface';
 import { from, Observable } from 'rxjs';
 import { doc, Firestore } from '@angular/fire/firestore';
@@ -41,23 +31,34 @@ export class AuthService {
     });
   }
 
-  singIn(
-    id: number,
-    email: string,
-    username: string,
-    password: string
-  ): Observable<void> {
-    const promise = createUserWithEmailAndPassword(
-      this.firebaseAuth,
-      email!,
-      password!
-    ).then((response) => {
-      updateProfile(response.user, { displayName: username });
-      const userRef = doc(this.firestore, 'users', response.user.uid);
-      return setDoc(userRef, { id, email, username });
-    });
+    // Connexion avec Google
+    loginWithGoogle(): Observable<void> {
+      const provider = new GoogleAuthProvider();
+      const promise = signInWithPopup(this.firebaseAuth, provider)
+        .then(() => {}); // Pas de retour nécessaire, l'observable s'en charge
+
+      return from(promise);
+    }
+
+  // Inscription avec e-mail et mot de passe + envoi de vérification
+  singUp(email: string, username: string, password: string) {
+    const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
+      .then(response => {
+        updateProfile(response.user, { displayName: username });
+        return this.sendVerificationEmail();
+      });
 
     return from(promise);
+  }
+
+  // Envoi de l'e-mail de vérification
+  sendVerificationEmail(): Observable<void> {
+    if (this.firebaseAuth.currentUser) {
+      const promise = sendEmailVerification(this.firebaseAuth.currentUser,{url:"http://localhost:4200",handleCodeInApp:true});
+      return from(promise);
+    } else {
+      throw new Error('Utilisateur non connecté');
+    }
   }
 
   logIn(email: string, password: string): Observable<void> {
@@ -113,5 +114,9 @@ export class AuthService {
     return from(promise);
   }
 
-  // getAllUsers() : Observable<
+
+
 }
+
+
+

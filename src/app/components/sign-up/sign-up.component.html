@@ -1,156 +1,116 @@
+
+
 <div class="container d-flex align-items-center justify-content-center vh-100">
-  <div class="row w-75 p-5 rounded bg-white">
-    <!-- shadow-sm 🟢 LOGO SECTION -->
-    <div class="col-md-6 d-flex align-items-center justify-content-center">
-      <img
-        src="../../../assets/logoMK.svg"
-        alt="Logo de Easy Market"
-        class="img-fluid"
-      />
-    </div>
-
-    <!-- 🟢 FORMULAIRE -->
-    <div class="col-md-6">
-      <div class="text-center mb-4">
-        <h2>Bonjour</h2>
-        <p>
-          Créer un compte ou
-          <a routerLink="/login" class="text-decoration-none text-muted"
-            >Ouvrir une session</a
-          >
-        </p>
-      </div>
-
-      <form [formGroup]="form" (ngSubmit)="OnSubmit()">
-        <div class="mb-3">
-          <label for="name" class="form-label">Nom :</label>
-          <input
-            type="text"
-            id="username"
-            class="form-control"
-            formControlName="username"
-            placeholder=""
-            title="Veuillez entrer votre nom"
-            [class.is-invalid]="
-              form.controls.username.invalid && form.controls.username.touched
-            "
-          />
-          <div
-            *ngIf="
-              form.controls.username.invalid && form.controls.username.touched
-            "
-            class="invalid-feedback"
-          >
-            Nom invalide
-          </div>
+    <div class="row w-100  p-5 rounded bg-white">
+        <!-- shadow-sm 🟢 LOGO SECTION -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img src="../../../assets/logofinal.svg" alt="Logo de Easy Market" class="img-fluid">
         </div>
+        <div class="email-verification-message" *ngIf="message" > {{ message }} </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label">Email :</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            formControlName="email"
-            [class.is-invalid]="
-              form.controls.email.invalid && form.controls.email.touched
-            "
-          />
-          <div
-            *ngIf="form.controls.email.invalid && form.controls.email.touched"
-            class="invalid-feedback"
-          >
-            Email invalide
+        <!-- 🟢 FORMULAIRE -->
+        <div class="col-md-6">
+          <div class="text-center mb-4">
+              <h2 class="fw-bold text-uppercase">Bienvenue</h2>
+              <p class="text-muted">Créez un compte ou
+                  <a routerLink="/login" class="text-decoration-none fw-semibold text-primary">contactez-vous </a>
+              </p>
           </div>
-        </div>
 
-        <div class="mb-3">
-          <label for="password" class="form-label">Mot de passe :</label>
-          <div class="input-group">
-            <input
-              [type]="showPassword ? 'text' : 'password'"
-              id="password"
-              class="form-control"
-              formControlName="password"
-              [class.is-invalid]="
-                form.controls.password.invalid && form.controls.password.touched
-              "
-            />
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              (click)="togglePasswordVisibility()"
-            >
-              <i
-                class="bi"
-                [ngClass]="{
-                  'bi-eye': !showPassword,
-                  'bi-eye-slash': showPassword
-                }"
-              ></i>
-            </button>
-          </div>
-          <div
-            *ngIf="
-              form.controls.password.invalid && form.controls.password.touched
-            "
-            class="invalid-feedback"
-          >
-            Mot de passe requis (minimum 6 caractères)
-          </div>
-        </div>
+            <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nom :</label>
+                    <input type="text" id="username" class="form-control" formControlName="username" placeholder="" title="Veuillez entrer votre nom" [class.is-invalid]="
+                      form.controls.username.invalid && form.controls.username.touched
+                    " />
+                    <div *ngIf="
+                      form.controls.username.invalid && form.controls.username.touched
+                    " class="invalid-feedback">
+                        Nom invalide
+                    </div>
+                </div>
 
-        <div class="mb-3">
-          <label for="confirmPassword" class="form-label"
-            >Confirmez le mot de passe :</label
-          >
-          <div class="input-group">
-            <input
-              [type]="showConfirmPassword ? 'text' : 'password'"
-              id="confirmPassword"
-              class="form-control"
-              formControlName="confirmPassword"
-              [class.is-invalid]="
-                (form.controls.confirmPassword.invalid &&
-                  form.controls.confirmPassword.touched) ||
-                (form.hasError('mismatch') && form.touched)
-              "
-            />
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              (click)="toggleConfirmPasswordVisibility()"
-            >
-              <i
-                class="bi"
-                [ngClass]="{
-                  'bi-eye': !showConfirmPassword,
-                  'bi-eye-slash': showConfirmPassword
-                }"
-              ></i>
-            </button>
-            <div *ngIf="form.hasError('mismatch')" class="invalid-feedback">
-              Les mots de passe ne correspondent pas.
-            </div>
-          </div>
-        </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email :</label>
+                    <input type="email" id="email" class="form-control" formControlName="email" [class.is-invalid]="
+                      form.controls.email.invalid && form.controls.email.touched
+                    " />
+                    <div *ngIf="form.controls.email.invalid && form.controls.email.touched" class="invalid-feedback">
+                        Email invalide
+                    </div>
+                </div>
 
-        <div class="d-grid">
-          <button
-            type="submit"
-            class="btn btn-primary"
-            [disabled]="form.invalid || form.hasError('mismatch')"
-          >
-            Créer un compte
-          </button>
-        </div>
-      </form>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe :</label>
+                    <div class="input-group">
+                        <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password" [class.is-invalid]="
+                        form.controls.password.invalid && form.controls.password.touched
+                      " />
+                        <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+                      <i
+                        class="bi"
+                        [ngClass]="{
+                          'bi-eye': !showPassword,
+                          'bi-eye-slash': showPassword
+                        }"
+                      ></i>
+                    </button>
+                    </div>
+                    <div *ngIf="
+                      form.controls.password.invalid && form.controls.password.touched
+                    " class="invalid-feedback">
+                        Mot de passe requis (minimum 6 caractères)
+                    </div>
+                </div>
 
-      <div class="text-center mt-3">
-        <a routerLink="/login" class="text-decoration-none text-muted"
-          >Déjà un compte ? Connectez-vous</a
-        >
-      </div>
-    </div>
-  </div>
-</div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirmez le mot de passe :</label
+                  >
+                  <div class="input-group">
+                    <input
+                      [type]="showConfirmPassword ? 'text' : 'password'"
+                      id="confirmPassword"
+                      class="form-control"
+                      formControlName="confirmPassword"
+                      [class.is-invalid]="
+                        (form.controls.confirmPassword.invalid &&
+                          form.controls.confirmPassword.touched) ||
+                        (form.hasError('mismatch') && form.touched)
+                      "
+                    />
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      (click)="toggleConfirmPasswordVisibility()"
+                    >
+                      <i
+                        class="bi"
+                        [ngClass]="{
+                          'bi-eye': !showConfirmPassword,
+                          'bi-eye-slash': showConfirmPassword
+                        }"
+                      ></i>
+                    </button>
+                    <div *ngIf="form.hasError('mismatch')" class="invalid-feedback">
+                      Les mots de passe ne correspondent pas.
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="d-grid">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="form.invalid || form.hasError('mismatch')"
+                  >
+                    Créer un compte
+                  </button>
+                </div>
+              </form>
+        
+              <div class="text-center mt-3">
+                <a routerLink="/login" class="text-decoration-none text-muted"
+                  >Déjà un compte ? Connectez-vous</a
+                >
+              </div>
+        </div>

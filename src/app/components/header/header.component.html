@@ -2,7 +2,7 @@
     <div class="container">
         <!-- 🟢 Logo -->
         <a class="navbar-brand" [routerLink]="['/']">
-            <img src="../../../assets/logoMK.svg" alt="Logo Easy Market" class="logo">
+            <img src="../../../assets/logofinal.svg" alt="Logo Easy Market" class="logo">
         </a>
 
         <a class="home-link" [routerLink]="['/']">
@@ -61,18 +61,18 @@
             <!-- Bouton de connexion (affiché si l'utilisateur n'est pas connecté) -->
             <div class="dropdown" *ngIf="isLoggedIn(); else loginButton">
                 <a class="auth-link dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                    <i class="bi bi-person"></i> Bienvenue {{ (authService.user$ | async)?.displayName}}
+                    <i class="bi bi-person"></i>{{ (authService.user$ | async)?.displayName}}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li>
-                        <a class="dropdown-item" (click)="toggleAuth()">Déconnexion</a>
+                        <!--rediriger le user si il n'est pas connecté-->
+                        <a class="dropdown-item" [routerLink]="isLoggedIn() ? '/panier' : '/login'">Panier</a>
                     </li>
                     <li>
                         <a class="dropdown-item" [routerLink]="['/user-profil']">Profil</a>
                     </li>
                     <li>
-                        <!--rediriger le user si il n'est pas connecté-->
-                        <a class="dropdown-item" [routerLink]="isLoggedIn() ? '/panier' : '/login'">Panier</a>
+                        <a class="dropdown-item" (click)="toggleAuth()">Déconnexion</a>
                     </li>
 
                 </ul>

@@ -2,84 +2,88 @@
     --primary-color: #570E6C;
     --secondary-color: #6d0f87;
     --orange-color: #ff5733;
-    --success-color: #27ae60;
-    --danger-color: #e74c3c;
-    --background-color: #f8f9fa;
-    --border-color: #e0e0e0;
-    --text-color: #333;
-    --text-light: #777;
 }
 
-
-/* Conteneur principal */
-
-.cart-container {
-    max-width: 800px;
-    margin: 100px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
-}
-
-
-/* En-tête du panier */
-
-.header-panier {
+.dashboard-container {
+    margin-top: 100px;
     display: flex;
-    align-items: center;
-    gap: 16px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+
+/* Zone de gauche : Historique des commandes */
+
+.history-section {
+    flex: 1 1 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.history-section h2 {
     margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #444;
 }
 
-.retour-btn {
-    background-color: var(--orange-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    /*border-radius: 4px;*/
-    transition: background-color 0.3s ease;
+.history-list {
+    max-height: 600px;
+    overflow-y: auto;
 }
 
-.retour-btn:hover {
-    background-color: var(--secondary-color);
+.history-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
 }
 
-.cart-title {
-    font-size: 24px;
-    color: var(--text-color);
-    margin: 0;
+.history-item:last-child {
+    border-bottom: none;
 }
 
-
-/* Message panier vide */
-
-.empty-cart {
-    font-size: 18px;
-    color: var(--text-light);
-    text-align: center;
-    padding: 40px 0;
+.history-item p {
+    margin: 5px 0;
 }
 
-
-/* Liste des produits */
-
-.cart-list {
-    list-style: none;
+.history-item ul {
+    list-style-type: none;
     padding: 0;
-    margin: 0;
+}
+
+.history-item li {
+    margin: 5px 0;
+}
+
+
+/* Zone de droite : Panier actuel */
+
+.cart-section {
+    flex: 2 1 600px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #444;
+}
+
+.cart-items {
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .cart-item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
 }
 
 .cart-item:last-child {
@@ -89,8 +93,8 @@
 .product-image {
     width: 80px;
     height: 80px;
-    border-radius: 5px;
     object-fit: contain;
+    border-radius: 8px;
 }
 
 .product-details {
@@ -99,20 +103,11 @@
 
 .product-details h3 {
     margin: 0;
-    font-size: 18px;
-    color: var(--text-color);
+    font-size: 1.2em;
 }
 
 .product-details p {
-    margin: 4px 0;
-    font-size: 14px;
-    color: var(--text-light);
-}
-
-.prixstyle {
-    font-weight: bold;
-    color: var(--primary-color);
-    font-size: 16px;
+    margin: 5px 0;
 }
 
 .delete-btn {
@@ -129,79 +124,101 @@
 }
 
 
-/* Total du panier */
+/* Message si le panier est vide */
 
-.cart-total {
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--text-color);
-    text-align: right;
-    margin: 20px 0;
+.empty-cart-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: #888;
 }
 
 
-/* Boutons d'actions */
+/* Total et actions */
 
-.cart-actions {
+
+/* Conteneur des boutons */
+
+.actions-container {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    gap: 8px;
     margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
 }
 
-.clear-cart-btn,
-.buy-cart-btn {
+.actions-container p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+
+/* Style de base du bouton */
+
+.actions-container .btn-artistic {
+    background: linear-gradient(45deg, #fafafa, var(--orange-color));
+    border-radius: 0;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.clear-cart-btn {
-    background-color: var(--danger-color);
-    color: white;
-}
-
-.clear-cart-btn:hover {
-    background-color: #c0392b;
-}
-
-.buy-cart-btn {
-    background-color: var(--success-color);
-    color: white;
-}
-
-.buy-cart-btn:hover {
-    background-color: #218c53;
 }
 
 
-/* Historique des achats */
+/* Effet de surbrillance au survol */
 
-.history-title {
-    font-size: 20px;
-    color: var(--text-color);
-    margin-top: 40px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
+.actions-container .btn-artistic::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    border-radius: 50%;
 }
 
-.history-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+/* Animation au survol */
+
+.actions-container .btn-artistic:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.history-item {
-    background: var(--background-color);
-    padding: 12px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    font-size: 14px;
-    color: var(--text-color);
+
+/* Effet de surbrillance au survol */
+
+.actions-container.btn-artistic:hover::after {
+    transform: translate(-50%, -50%) scale(1);
 }
 
-.history-item p {
-    margin: 0;
+
+/* Animation au clic */
+
+.actions-container .btn-artistic:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .history-section,
+    .cart-section {
+        flex: 1 1 auto;
+    }
 }

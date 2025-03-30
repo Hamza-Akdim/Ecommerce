@@ -1,0 +1,55 @@
+<!-- Modal de paiement -->
+<div *ngIf="isModalOpen" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Mode de paiement</h2>
+
+        <!-- Sélection du mode de paiement -->
+        <div class="payment-methods">
+            <label>
+        <input type="radio" name="paymentMethod" value="creditCard" [(ngModel)]="selectedPaymentMethod">
+        Carte de Crédit
+      </label>
+            <label>
+        <input type="radio" name="paymentMethod" value="paypal" [(ngModel)]="selectedPaymentMethod">
+        PayPal
+      </label>
+        </div>
+
+        <!-- Formulaire selon le mode de paiement -->
+        <form *ngIf="selectedPaymentMethod === 'creditCard'" (ngSubmit)="processPayment()">
+            <div class="form-group">
+                <label for="cardNumber">Numéro de la carte</label>
+                <input type="text" id="cardNumber" [(ngModel)]="paymentData.cardNumber" name="cardNumber" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cardHolder">Nom du titulaire</label>
+                <input type="text" id="cardHolder" [(ngModel)]="paymentData.cardHolder" name="cardHolder" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expirationDate">Date d'expiration</label>
+                <input type="month" id="expirationDate" [(ngModel)]="paymentData.expirationDate" name="expirationDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" [(ngModel)]="paymentData.cvv" name="cvv" required>
+            </div>
+
+            <button type="submit" class="payment-button">Payer avec la carte</button>
+        </form>
+
+        <form *ngIf="selectedPaymentMethod === 'paypal'" (ngSubmit)="processPayment()">
+            <div class="form-group">
+                <label for="paypalEmail">Email PayPal</label>
+                <input type="email" id="paypalEmail" [(ngModel)]="paymentData.paypalEmail" name="paypalEmail" required>
+            </div>
+
+            <button type="submit" class="payment-button">Payer avec PayPal</button>
+        </form>
+
+        <!-- Bouton pour fermer le modal -->
+        <button (click)="closeModal()" class="close-modal">Fermer</button>
+    </div>
+</div>

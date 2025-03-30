@@ -39,6 +39,13 @@ export class RechercheComponent {
         data: { product } // Passer les données du produit au modal
       });
   }
-    
+
+  generateStars(rate: number): string {
+    const fullStars = '★'.repeat(Math.floor(rate));
+    const emptyStars = '☆'.repeat(5 - Math.floor(rate));
+    return fullStars + emptyStars;
+  }
+  
+
 
 }

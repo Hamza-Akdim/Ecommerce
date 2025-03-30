@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
 
   onCategorySelect(category: string) :void {
     this.apiService.searchByCategory(category);
-    console.log(this.searchResults);
     
     console.log("yes tu a cliquer ici", category);
   }

@@ -13,3 +13,40 @@
 .product-rating span:first-child {
     font-weight: bold;
 }
+
+@keyframes trill {
+    0% {
+        transform: translateX(-50%) scale(1);
+    }
+    25% {
+        transform: translateX(-50%) scale(1.1) rotate(-2deg);
+    }
+    50% {
+        transform: translateX(-50%) scale(1);
+    }
+    75% {
+        transform: translateX(-50%) scale(1.1) rotate(2deg);
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.star-overlay {
+    position: absolute;
+    top: 150px;
+    /* Ajuste la position verticale */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f39c12;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: trill 1.5s infinite ease-in-out;
+    /* Appliquer l’animation */
+}
+
+.card.custom-card {
+    position: relative;
+}

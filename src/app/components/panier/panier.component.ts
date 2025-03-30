@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmDropComponent } from '../dialog-confirm-drop/dialog-confirm-drop.component';
 import { ApiService } from '../../services/api.service';
 import { HistoryInterface } from '../../models/HistoryInterface';
-import { AuthService } from '../../services/auth.service';
+import { PayementComponent } from '../payement/payement.component';
 
 @Component({
   selector: 'app-panier',
@@ -13,6 +13,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './panier.component.css',
 })
 export class PanierComponent implements OnInit {
+
+  @ViewChild('payementComponent') payementComponent!: PayementComponent;
+
   productsPanier: Product[] = [];
   purchaseHistory: HistoryInterface[] = [];
   itemDropedTable: Product[] = [];
@@ -20,14 +23,11 @@ export class PanierComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private apiService: ApiService,
-    public dialog: MatDialog,
-    private authService: AuthService
-  ) {}
+    public dialog : MatDialog
+  ){}
 
   ngOnInit(): void {
-    const currentUser = this.authService.currentUserSignal();
 
-    console.log(currentUser)
     this.cartService.cartItems$.subscribe((products) => {
       this.productsPanier = products;
     });
@@ -59,11 +59,12 @@ export class PanierComponent implements OnInit {
   //suprimer tout les produit si oui
   viderPanier() {
     //recupere les data
-    this.itemDropedTable = this.cartService.getPanier();
+
     const dialogRef = this.dialog.open(DialogConfirmDropComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.cartService.viderPanier();
+    dialogRef.afterClosed().subscribe((result)=>{
+      if(result){
+        this.itemDropedTable = this.cartService.getPanier()
+        this.cartService.viderPanier()
       }
     });
   }
@@ -73,16 +74,7 @@ export class PanierComponent implements OnInit {
   }
 
   commander(): void {
-    this.cartService.commander(this.productsPanier, 1).subscribe({
-      next: (response) => {
-        console.log('commande passe avec succes:', response);
-        alert('commande passe avec succes !');
-      },
-      error: (error) => {
-        console.error('Erreur lors de la commande:', error);
-        alert('Une erreur est survenue lors de la commande.');
-      },
-    });
+      this.payementComponent.openModal(this.productsPanier);
   }
 
   retour() {
@@ -97,4 +89,8 @@ export class PanierComponent implements OnInit {
       console.log('Aucun produit à retourner.');
     }
   }
+
+
+
+
 }

@@ -14,3 +14,8 @@ export interface  Rating {
       rate: number,
       count: number
     }
+
+export interface Category {
+  name: string,
+  image:string,
+}
